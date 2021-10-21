@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang=""en-US>
+<head>
+	<title>Result</title>
+<style>
+    table{
+ width: 50%;
+  height: 50%;
+    }
+
+    table, th, td {
+  border:2px solid black;
+  margin-left: 30%;
+  margin-top: 5%;
+  background-color: lavenderblush;
+
+}
+
+
+</style>
+
+</head>
+<body style="text-align: center; background-color: rgb(107, 235, 196);">
+    <h1>Final Result</h1>
+            <table>
+                <tr>
+                    <th></th>
+                    <th>Participant</th>
+                    <th>Time</th>
+                </tr>
+            {% for i in part%}
+            
+            <tr>
+                {%for j in i%}
+                <td>{{j}}</td>
+                {%endfor%}
+                
+            </tr>
+            {%endfor%}
+            <table>
+
+</body>
+</html>

@@ -1,0 +1,212 @@
+<html>
+    <head>
+        <title>Diwali</title>
+
+    </head>
+    <style>
+        body {
+    background: darksalmon;
+    color: white;
+}
+
+#tongue{
+    margin-top: 1%;
+    margin-left: 43%;
+    
+    width: 250px;
+    height: 40px;
+    border: 4px sold white;
+    border-radius: 50px;
+    background: #202020;
+    color: white;
+    cursor: pointer;
+    outline: none;
+    
+
+}
+#buttons2 {
+    width: 100px;
+    height: 30px;
+    border: 3px sold white;
+    border-radius: 50px;
+    background: #202020;
+    color: white;
+    cursor: pointer;
+    outline: none;
+}
+
+#stopwatch {
+    font-size: 100px;
+    position: absolute;
+    top: 67%;
+    left: 50%;
+    transform: translate(-50%, -55%);
+}
+#buttons {
+    position: absolute;
+    top: 75%;
+    left: 48.4%;
+    transform: translate(-51.6%, -45%);
+}
+#buttons li {
+    display: inline;
+    padding-left: 10px;
+}
+
+#submit {
+    position: absolute;
+    top: 85%;
+    left: 49.5%;
+    transform: translate(-51.6%, -45%);
+    width: 100px;
+    height: 30px;
+    border: 3px soldi white;
+    border-radius: 50px;
+    background: #ee710b;
+    color: white;
+}
+.lable{
+    color:white;
+    margin-left: 35%;
+    
+}
+.input-boxr
+{
+    margin-left: 0%;
+    border-radius: 20px;
+    padding: 10px;
+    /*margin:10px 0;
+    width: 100%;
+    border: 1px solid #999;
+    outline: none;
+    background:white; */
+
+}
+#result{
+    position: absolute;
+    top: 95%;
+    left: 49.5%;
+    transform: translate(-51.6%, -45%);
+    width: 200px;
+    height: 30px;
+    border: 3px soldi white;
+    border-radius: 50px;
+    background: #0b40ee;
+    color: white;
+
+}
+#twister{
+    text-align: center;
+    
+
+}
+
+    </style>
+    <body>
+        
+            <h1 style="text-align: center; font-size: 80px;">Welcome to Diwali Celebration</h1>
+
+            
+          <div>
+
+            
+            <!-- <button id="tongue" onclick="Tongue_Twister()">Tongue Twister</button>
+            
+            <h1 id="twister" style="color: rgb(182, 248, 60); "></h1> -->
+           
+        <div id="stopwatch">
+            00:00:00
+        </div>
+        <ul id="buttons">
+            <li><button id="buttons2" onclick="startTimer()">Start</button></li>
+            <li><button id="buttons2" onclick="stopTimer()">Stop</button></li>
+            <li><button id="buttons2" onclick="resetTimer()">Reset</button></li>
+        </ul>
+        </div>  
+        <form method="POST" action="submit">
+            <label  class="lable"> Participant Name:</label>
+                
+            <input type="text" name="P_NAME" class="input-boxr"  placeholder="Participant Name" required>
+            {% csrf_token %}
+        <input name="time" id="stopwatch1">
+        <input type="submit" id='submit'> 
+        </form>
+        <button id="tongue" onclick="Tongue_Twister()">Tongue Twister</button>
+            
+            <h1 id="twister" style="color: rgb(182, 248, 60); font-size: 40px; "></h1>
+        <form action="result">
+            <button id="result">Show Result</button>
+            
+        </form>
+    </body>
+    <script>
+
+        let hr = 0;
+        let min = 0;
+        let sec = 0;
+        let stoptime = true;
+
+        function startTimer() {
+            if (stoptime == true) {
+                stoptime = false;
+                timerCycle();
+            }   
+        }
+
+        function stopTimer() {
+            if (stoptime == false) {
+             stoptime = true;
+            }
+        }
+
+function timerCycle() {
+            if (stoptime == false) {
+            sec = parseInt(sec);
+            min = parseInt(min);
+            hr = parseInt(hr);
+
+            sec = sec + 1;
+
+            if (sec == 60) {
+                min = min + 1;
+                sec = 0;
+            }
+            if (min == 60) {
+                hr = hr + 1;
+                min = 0;
+                sec = 0;
+        }
+
+        if (sec < 10 || sec == 0) {
+            sec = '0' + sec;
+            }
+        if (min < 10 || min == 0) {
+            min = '0' + min;
+        }
+        if (hr < 10 || hr == 0) {
+                hr = '0' + hr;
+        }
+
+        document.getElementById("stopwatch").innerHTML = (hr+ ":" + min + ":" + sec);
+        document.getElementById("stopwatch1").value = (hr+ ":" + min + ":" + sec);
+
+        setTimeout("timerCycle()", 1000);
+    }
+}
+
+function resetTimer() {
+    hr = 0;
+    min = 0;
+    sec = 0;
+    stoptime = true;
+    stoptime = true;
+    document.getElementById("stopwatch").innerHTML = '00:00:00';
+    }
+
+function Tongue_Twister(){
+    const twisters = ["Upper roller <br>lower roller", "The big fat cat<br>sat on the rat", "Four fine fresh<br>fish for you","A big black bear<br>sat on a big black RUG","I scream<br>you scream	<br>we all scream<br>for ICE CREAM",];
+    // let a=Math.floor(Math.random() * 3);
+    document.getElementById("twister").innerHTML=twisters[Math.floor(Math.random() * 5)];
+}
+    </script>
+</html>
