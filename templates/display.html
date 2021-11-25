@@ -1,3 +1,4 @@
+{%load static%}
 <html>
     <head>
         <title>Diwali</title>
@@ -5,13 +6,20 @@
     </head>
     <style>
         body {
-    background: darksalmon;
-    color: white;
+    /* background: rgb(186, 224, 97); */
+    /* background-image: url("28648.jpg"); */
+    background-image: url('{% static "28648.jpg"%}');
+    background-size: 1700px 800px;
+    background-repeat: no-repeat;
+    background-position: top;
+    background-attachment: fixed;
+
+    /* color: white; */
 }
 
 #tongue{
     margin-top: 1%;
-    margin-left: 43%;
+    margin-left: 48%;
     
     width: 250px;
     height: 40px;
@@ -23,6 +31,20 @@
     outline: none;
     
 
+}
+#participant_rand
+{
+    margin-top: -3.5%;
+    margin-left: 63%;
+    
+    width: 250px;
+    height: 40px;
+    border: 4px sold white;
+    border-radius: 50px;
+    background: #202020;
+    color: white;
+    cursor: pointer;
+    outline: none;
 }
 #buttons2 {
     width: 100px;
@@ -42,7 +64,7 @@
     right: 10%;
     left: 10%; */
     margin-top: 20%;
-    margin-left: -18%;
+    margin-left: -14%;
     /* transform: translate(-50%, -55%); */
     /* margin-left: 0%; */
     border-radius: 20px;
@@ -50,8 +72,8 @@
 }
 #buttons {
     position: absolute;
-    top: 75%;
-    left: 48.4%;
+    top: 77%;
+    left:57%;
     transform: translate(-51.6%, -45%);
 }
 #buttons li {
@@ -62,10 +84,10 @@
 #submit {
     position: absolute;
     top: 85%;
-    left: 49.5%;
+    left: 58.5%;
     transform: translate(-51.6%, -45%);
-    width: 100px;
-    height: 30px;
+    width: 120px;
+    height: 40px;
     border: 3px soldi white;
     border-radius: 50px;
     background: #ee710b;
@@ -73,7 +95,7 @@
 }
 .lable{
     color:white;
-    margin-left: 35%;
+    margin-left: 39%;
     
 }
 .input-boxr
@@ -90,11 +112,11 @@
 }
 #result{
     position: absolute;
-    top: 95%;
-    left: 49.5%;
+    top: 85%;
+    left: 80%;
     transform: translate(-51.6%, -45%);
-    width: 200px;
-    height: 30px;
+    width: 210px;
+    height: 40px;
     border: 3px soldi white;
     border-radius: 50px;
     background: #0b40ee;
@@ -102,7 +124,9 @@
 
 }
 #twister{
-    text-align: center;
+    /* text-align: center; */
+    margin-top: 1%;
+    margin-left: 48%;
     
 
 }
@@ -110,7 +134,7 @@
     </style>
     <body>
         
-            <h1 style="text-align: center; font-size: 80px;">Welcome to Diwali Celebration</h1>
+            <h1 style="margin-left:27%; margin-top:3%; font-size: 65px; ">Welcome to Tongue Twister Event</h1>
 
             
           <div>
@@ -122,7 +146,7 @@
             00:00:00
         </div> -->
         <ul id="buttons">
-            <li><button id="buttons2" onclick="startTimer()">Start</button></li>
+            <li><button name="start" id="buttons2" onclick="startTimer()">Start</button></li>
             <li><button id="buttons2" onclick="stopTimer()">Stop</button></li>
             <li><button id="buttons2" onclick="resetTimer()">Reset</button></li>
         </ul>
@@ -130,17 +154,18 @@
         <form method="POST" action="submit">
             <label  class="lable"> Participant Name:</label>
                 
-            <input type="text" name="P_NAME" class="input-boxr"  placeholder="Participant Name" required>
+            <input type="text" name="P_NAME" class="input-boxr" id="participant_name" placeholder="Participant Name" required>
             {% csrf_token %}
         <!-- <input name="time" id="stopwatch1"> -->
         <input name="time" size="4" id="stopwatch" value="00:00:00">
-        <input type="submit" id='submit'> 
+        <input name="submit" type="submit" id='submit'> 
         </form>
-        <button id="tongue" onclick="Tongue_Twister()">Tongue Twister</button>
+        <button id="participant_rand" onclick="participant_name_rand()">Select Participant</button>
+        <button id="tongue" name="tongue" onclick="Tongue_Twister()">Tongue Twister</button>
             
-            <h1 id="twister" style="color: rgb(182, 248, 60); font-size: 40px; "></h1>
+            <h1 id="twister" style="color: rgb(241, 202, 72); font-size: 40px; "></h1>
         <form action="result">
-            <button id="result">Show Result</button>
+            <button name="result" id="result">Show Result</button>
             
         </form>
     </body>
@@ -209,9 +234,15 @@ function resetTimer() {
     }
 
 function Tongue_Twister(){
-    const twisters = ["Upper roller <br>lower roller", "The big fat cat<br>sat on the rat", "Four fine fresh<br>fish for you","A big black bear<br>sat on a big black RUG","I scream<br>you scream	<br>we all scream<br>for ICE CREAM",];
+    const twisters = ["Upper roller <br>lower roller", "The big black bug bit a big black <br> dog on his big black nose!","Robert ran rings around the <br> Roman ruins","Can you can a can as a canner <br> can can a can?", "How much wood would a woodchuck <br> chuck if a woodchuck could chuck wood?","A big black bear<br>sat on a big black RUG","I scream<br>you scream	<br>we all scream<br>for ICE CREAM",];
     // let a=Math.floor(Math.random() * 3);
-    document.getElementById("twister").innerHTML=twisters[Math.floor(Math.random() * 5)];
+    document.getElementById("twister").innerHTML=twisters[Math.floor(Math.random() * 6)];
+}
+
+function participant_name_rand()
+{
+    const name=["Ashika Jayamurugan","Rakesh Edamula","Vinod Kumar K","Mada Siva Datta","Vinay Kumar D","Ambika Jayamurugan","Ammasaikutti, Shanthi","Bhat, Karthik","Dinesh, Harsha","D, Jegan","Haribabu","Kumar, Chitikireddy Vinay","Guravva Mallappa Maranoor","Chandramouli Thatigundla","Albin Vettukallel Thomas","Bharath Raj","Kanakanti Kanthamma","Rajani Raju","Ashfaque Armaan","Dhanya Ayyappan","Chaudhuri, Mohima","Yoganantham, Santhosh","Kumar, Durgesh","Raghavendra, Pallavi","Faizan Buch","Vikas Kumar","Mathur, Vibhor","Kb, Akshay","Bt, Mutturaj","Surbhi Arya","Sakshi Vatsa","Pradeep Kumar Maurya","Nirmala V","Panigrahi, Mohini","Sudha Sattwa Basu","Prasad, Krishna","Dikshit, Abhijit","Ashish Pal","Suganthi Krishnan","Mishra, Saurav Kumar","Majhi, Pinky","Sarankumar Akuthota","Pramod Kumar Mishra","Nayak, Prajna","Khuntia, Sidhartha","Jatin Firme","Vegesna, Goutham","Naik, Varun","Anand, Naveen","Goyal, Chetan","Karan Veer Singh","Yedukondalu, Shaik","Martin, Vivek","Pr, Gokalakshmi","Rahul Kumar Singh","Himani Saxena","Venkatesan Purusothaman"]
+    document.getElementById("participant_name").value=name[Math.floor(Math.random() * 57)];
 }
     </script>
 </html>
