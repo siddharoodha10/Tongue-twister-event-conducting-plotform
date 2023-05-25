@@ -1,8 +1,5 @@
-This apllication Hepls to conduct Virtual Tongur twister events.
-
-For running this application
-
-install the falowing things
-
-python 3.*
-Django Framework
+Description: 
+        Developed an application to conduct virtual/offline tongue twister event.
+        It will take the participant’s name and give the random tongue twister statement. 
+        Participant has to complete the challenge and the time will be recorded. The first three winners will be announced. 											
+Technologies used: Python, Django, sqlite3, HTML, CSS, and Java Script	
