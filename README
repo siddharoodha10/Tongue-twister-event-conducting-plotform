@@ -3,3 +3,4 @@ Description:
         It will take the participant’s name and give the random tongue twister statement. 
         Participant has to complete the challenge and the time will be recorded. The first three winners will be announced. 											
 Technologies used: Python, Django, sqlite3, HTML, CSS, and Java Script	
+Live : http://aroodha.pythonanywhere.com/
